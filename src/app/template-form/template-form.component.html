@@ -1,0 +1,63 @@
+<h2>Template Form: Vehicle registration</h2>
+<div class="make">
+  <fieldset>
+    <legend>Manufacturer</legend>
+    <select [(ngModel)]="vehicleInfo.make">
+      <option *ngFor="let name of manufacturers" [value]="name">{{name}}</option>
+    </select>
+  </fieldset>
+</div>
+<br><br>
+<div class="vehicleModel">
+  <fieldset>
+    <legend>Model</legend>
+    <input type="text" placeholder="Example: Pulsar" [(ngModel)]="vehicleInfo.model">
+  </fieldset>
+</div>
+<br><br>
+<div class="vehicleDetails">
+  <fieldset>
+    <legend>Vehicle details</legend>
+    <textarea [(ngModel)]="vehicleInfo.details"></textarea>
+  </fieldset>
+</div>
+<br><br>
+<div class="vehicleInsurance">
+  <fieldset>
+    <legend>Insurance status</legend>
+    <input type="radio" [(ngModel)]="vehicleInfo.isInsured" value="Yes">Yes
+    <input type="radio" [(ngModel)]="vehicleInfo.isInsured" value="No">No
+  </fieldset>
+</div>
+<br><br>
+<div class="ownerInfo">
+  <fieldset>
+    <legend>Available documents</legend>
+    <!--<input type="checkbox" *ngFor="let docs of documents" [id]="docs.id"
+      [value]="docs.name">{{docs.name}}<br><br>
+
+    <div *ngFor="let docs of documents; let i=index">
+    <input type="checkbox" [value]="documents[i]">
+  </div>-->
+
+    <input type="checkbox" name="a" [(ngModel)]="vehicleInfo.docs" id=1
+      [value]="documents[0].name">Pan card
+    <input type="checkbox" name="b" [(ngModel)]="vehicleInfo.docs" id=2
+      [value]="documents[1].name">vote card
+    <input type="checkbox" name="c" [(ngModel)]="vehicleInfo.docs" id=3
+      [value]="documents[2].name">Driving
+    Liscence
+  </fieldset>
+</div>
+<br><br>
+<div class="regDate">
+  <fieldset>
+    <legend>Date of registration</legend>
+    <input type="text" [(ngModel)]="vehicleInfo.regDate" [minDate]="minDate" [maxDate]="maxDate"
+      #dp="bsDatepicker" bsDatepicker [(bsValue)]="currentDate">
+  </fieldset>
+</div>
+<br><br><br><br>
+<div class="details">
+  {{getDetails()}}
+</div>

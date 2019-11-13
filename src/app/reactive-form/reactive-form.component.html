@@ -1,0 +1,48 @@
+<h2>Reactive Form: Vehicle Registration</h2>
+<div class="reg-form">
+  <form [formGroup]="vehicleForm">
+    <fieldset>
+      <legend>Manufacturer</legend>
+      <select formControlName="maker">
+        <option *ngFor="let name of manufacturers" [value]="name">{{name}}</option>
+        <option [selected]="name"></option>
+      </select>
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>Model</legend>
+      <input type="text" placeholder="Example: Pulsar" formControlName="model">
+    </fieldset>
+    <div>{{vehicleForm.error | json}}</div>
+    <br><br>
+    <fieldset>
+      <legend>Vehicle details</legend>
+      <textarea formControlName="details"></textarea>
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>Insurance status</legend>
+      <input type="radio" formControlName="isInsured" value="Yes">Yes
+      <input type="radio" formControlName="isInsured" value="No">No
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>Available documents</legend>
+      <label formArrayName="info"
+        *ngFor="let option of vehicleForm.controls.info.option; let i=index">
+        <input type="checkbox" formControlName="i">
+        {{documents[i].name}}
+      </label>
+    </fieldset>
+    <br><br>
+    <fieldset>
+      <legend>Date of registration</legend>
+      <input type="text" formControlName="regDate" [minDate]="minDate" [maxDate]="maxDate"
+        #dp="bsDatepicker" bsDatepicker [(bsValue)]="currentDate">
+    </fieldset>
+  </form>
+</div>
+<br><br><br><br>
+<div class="details">
+  {{getDetails()}}
+</div>
